@@ -33,5 +33,5 @@ class Server:
         data = self.dataset()
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
-        strt, stop = index_range(page, page_size)
-        return data[strt:stop] if strt < len(data) or stop < len(data) else []
+        start, stop = index_range(page, page_size)
+        return data[start:stop]
