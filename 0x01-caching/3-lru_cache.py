@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ LRUCache module
 """
-BaseCaching = __import__('base_caching').BaseCaching
 from collections import OrderedDict
+BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LRUCache(BaseCaching):
@@ -24,17 +24,15 @@ class LRUCache(BaseCaching):
             if key in self.LRU_items:
                 self.cache_data.move_to_end(key)
             if len(self.cache_data) > self.MAX_ITEMS:
-                deleted_key, val = self.cache_data.popitem(last = False)
+                deleted_key, val = self.cache_data.popitem(last=False)
                 print(f'DISCARD: {deleted_key}')
             self.cache_data[key] = item
-            print(self.cache_data)
 
     def get(self, key):
         """ Get an item by key
         """
         if key and key in self.cache_data:
             self.cache_data.move_to_end(key)
-            print(self.cache_data)
             return self.cache_data[key]
         else:
-             None
+            None
