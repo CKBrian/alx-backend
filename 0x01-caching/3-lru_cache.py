@@ -21,11 +21,12 @@ class LRUCache(BaseCaching):
         """ Add an item in the cache
         """
         if key and item:
-            if key in self.LRU_items:
+            if key in self.cache_data:
                 self.cache_data.move_to_end(key)
-            if len(self.cache_data) > self.MAX_ITEMS:
-                deleted_key, val = self.cache_data.popitem(last=False)
-                print(f'DISCARD: {deleted_key}')
+            else:
+                if len(self.cache_data) >= self.MAX_ITEMS:
+                    deleted_key, val = self.cache_data.popitem(last=False)
+                    print(f'DISCARD: {deleted_key}')
             self.cache_data[key] = item
 
     def get(self, key):
