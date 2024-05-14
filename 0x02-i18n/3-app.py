@@ -20,7 +20,7 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale():
     """returns local language"""
-    return request.accept_languages.best_match()
+    return request.accept_languages.best_match(["en", "fr"])
 
 
 @app.route("/", strict_slashes=False)
@@ -34,4 +34,4 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
