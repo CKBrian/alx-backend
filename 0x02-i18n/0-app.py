@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 '''Defines a Flask app module'''
 
-from flask import Flask
+from flask import Flask, render_template
 
-@app = Flask(__name__)
+app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", strict_slashes=False)
 def index():
     '''returns an index HTML file'''
     return render_template('0-index.html')
