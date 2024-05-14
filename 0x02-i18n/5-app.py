@@ -22,6 +22,7 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 @babel.localeselector
 def get_locale() -> str:
     """
@@ -47,6 +48,7 @@ def index() -> str:
     '''
     user = g.user
     return render_template('5-index.html', user=user)
+
 
 def get_user():
     '''returns a user dictionary or None if the ID cannot be found
