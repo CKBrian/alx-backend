@@ -27,7 +27,6 @@ def get_locale() -> str:
     """
     languages = app.config["LANGUAGES"]  # locale language code
     locale = request.args.get('locale')
-    print(locale)
     if locale and locale in languages:
         return locale
     return request.accept_languages.best_match(languages)
