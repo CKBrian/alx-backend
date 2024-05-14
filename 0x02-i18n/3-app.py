@@ -18,23 +18,28 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
-    """returns local language"""
-    return request.accept_languages.best_match(app.config["LANGUAGES"])
+def get_locale() -> str:
+    """
+    returns local language
+
+    Returns:
+        str: Best matching locale language code
+    """
+    lang = app.config["LANGUAGES"]  # locale language code
+    lang_match = request.accept_languages.best_match(lang)
+    return lang_match
 
 
 @app.route("/", strict_slashes=False)
-def index():
-    '''returns an index HTML file'''
+def index() -> str:
     '''
-    home_title = gettext('Welcome to Holberton')
-    home_header = gettext('Hello world')
-    return render_template('3-index.html',
-                           home_header=home_header,
-                           home_title=home_title)
+    returns an index HTML file
+
+    Returns:
+        str: Homepage content
     '''
     return render_template('3-index.html')
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(debug=True)
