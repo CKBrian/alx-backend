@@ -59,7 +59,7 @@ def index() -> str:
         str: Homepage content
     '''
     user = g.user
-    return render_template('5-index.html', user=user)
+    return render_template('6-index.html', user=user)
 
 
 def get_user():
