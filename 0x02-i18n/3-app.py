@@ -9,7 +9,7 @@ app = Flask(__name__)
 class Config:
     '''Configurations class'''
     LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_LOCALE = "fr"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
@@ -26,11 +26,14 @@ def get_locale():
 @app.route("/", strict_slashes=False)
 def index():
     '''returns an index HTML file'''
+    '''
     home_title = gettext('Welcome to Holberton')
     home_header = gettext('Hello world')
-    return render_template('0-index.html',
+    return render_template('3-index.html',
                            home_header=home_header,
                            home_title=home_title)
+    '''
+    return render_template('3-index.html')
 
 
 if __name__ == "__main__":
