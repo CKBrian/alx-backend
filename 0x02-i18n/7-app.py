@@ -2,7 +2,10 @@
 '''Defines a Flask app module'''
 
 from flask import Flask, render_template, request, g
-from flask_babel import Babel
+from flask_babel import Babel, format_datetime
+from pytz import timezone
+from pytz.exceptions import UnknownTimeZoneError
+from datetime import datetime
 app = Flask(__name__)
 
 
@@ -51,20 +54,21 @@ def get_locale() -> str:
 @babel.timezoneselector
 def get_timezone():
     '''Returns the timezone'''
-    timezones = app.config["BABEL_DEFAULT_TIMEZONE"]  # timezone
+    try:
 
-    # Find timezone parameter in URL parameters
-    timezone = request.args.get('timezone')
-    if timezone and timezone in timezones:
-        return timezone
+        # Find timezone parameter in URL parameters
+        t_zone = request.args.get('timezone')
+        if t_zone:
+            return timezone(t_zone)
 
-    # Find time zone from user settings
-    if g.user and g.user['timezone'] in timezones:
-        if g.user['timezone']:
-            return g.user['timezone']
+        # Find time zone from user settings
+        if g.user and g.user['timezone']:
+            return timezone(g.user['timezone'])
 
+    except UnknownTimeZoneError:
+        pass
     # Default to UTC
-    return "UTC"
+    return timezone("UTC")
 
 
 @app.route("/", strict_slashes=False)
