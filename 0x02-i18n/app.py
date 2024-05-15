@@ -81,7 +81,6 @@ def index() -> str:
     '''
     user = g.user
     g.time = format_datetime()
-    print(g.time)
     return render_template('index.html', user=user, time=g.time)
 
 
