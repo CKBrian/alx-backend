@@ -18,10 +18,6 @@ const displaySchoolValue = (schoolName) => {
   });
 }
 
-const getSetData = () => {
-  displaySchoolValue('Holberton');
-  setNewSchool('HolbertonSanFrancisco', '100');
-  displaySchoolValue('HolbertonSanFrancisco');
-
-}
-getSetData();
+displaySchoolValue('Holberton');
+setNewSchool('HolbertonSanFrancisco', '100');
+displaySchoolValue('HolbertonSanFrancisco');
