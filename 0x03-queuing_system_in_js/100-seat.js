@@ -71,6 +71,7 @@ app.get('/process', async (req, res) => {
 		reserveSeat(availableSeats - 1);
 		if (availableSeats - 1 === 0) {
 			reservationEnabled = false;
+			done();
 		} else if (availableSeats - 1 > 0) {
 			done();
 		} else {
